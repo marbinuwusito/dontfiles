@@ -26,6 +26,7 @@
 
 [colors]
 ;background = ${xrdb:color0}
+; if you want full transparency put background = #000000
 background = #aa121212
 foreground = ${xrdb:color7}
 ;7
