@@ -355,19 +355,13 @@ format-disconnected =
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
 [module/date]
-type = internal/date
+type = custom/script
+exec = ~/path/to/calendar.sh
 interval = 5
-
-date = %Y-%m-%d
-date-alt = " %Y-%m-%d"
-
-time = %H:%M
-time-alt = %H:%M
-
-format-prefix-foreground = ${colors.green}
-
-format =  <label>
-label = %date% %time%
+click-left = exec notify-send -i ~/path/to/calendar_icon.png "$(cal)"
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+label = %output:25%
 
 [module/pulseaudio]
 type = internal/pulseaudio
