@@ -368,7 +368,6 @@ format-prefix-foreground = ${colors.green}
 
 format =  <label>
 label = %date% %time%
-click-left = ~/Documentos/scripts/calendar.sh 
 
 [module/pulseaudio]
 type = internal/pulseaudio
