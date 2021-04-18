@@ -24,13 +24,11 @@
 ;secondary = ${xrdb:color1}
 ;alert = ${xrdb:color5}
 
-include-file = ~/.config/polybar/colors.ini
-
 [colors]
 background = ${xrdb:color0}
-;background = #aa121a1b
+;background = #aa0a0e14
 ;background = #aa121212
-foreground = ${xrdb:color7}
+foreground = ${xrdb:color15}
 ;7
 red = ${xrdb:color1}
 ;1
@@ -41,6 +39,11 @@ yellow = ${xrdb:color3}
 blue = ${xrdb:color4}
 ;4
 teal = ${xrdb:color5}
+
+magenta = ${xrdb:color6}
+
+gray = ${xrdb:color8}
+
 ;5
 
 ;[colors]
@@ -57,10 +60,10 @@ teal = ${xrdb:color5}
 
 [bar/mybar2]
 width = 100%
-height = 40
-offset-x = 0%
-offset-y = 0%
-radius = 5.0
+height = 30
+offset-x = 1%
+offset-y = 1%
+;radius-top = 12.0
 fixed-center = true
 bottom = true
 
@@ -69,55 +72,55 @@ foreground = ${colors.foreground}
 
 line-size = 0
 
-border-left-size = 190
-border-right-size = 190
-;border-top-size = 0
-border-bottom-size = 10
+border-left-size = 0
+border-right-size = 0
+;border-top-size = 10
+;border-bottom-size = 10
 
 ;border-left-size = 1
 ;border-right-size = 1
 ;border-bottom-size = 1
 ;border-top-size = 1
-;border-color = #ff000000
+;border-color = ${colors.gray}
 
 
 module-margin-left = 1
 module-margin-center= 1
 module-margin-right = 1
 
-font-0 = Hack Nerd Font: size=10.5;2
-;font-1 = Hack Nerd Font : size=10.5;2
+font-1 = scientifica:size=14;3: antialias=true
+font-0 = siji: size=18;3: antialias=false
 
 ;modules-left = filesystem memory cpu backlight xkeyboard battery wlan info-hackspeed temperature
 ;modules-right = my-text-label pulseaudio
-modules-center = healthbar separator battery separator filesystem separator memory separator backlight separator cpu separator wlan separator pulseaudio
+modules-center = battery separator filesystem separator memory separator backlight separator cpu separator wlan separator pulseaudio
 
 [bar/mybar]
 enable-ipc = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
-height = 40
-offset-x = 1%
+height = 30
+;width = 98.5%
+;height = 40
+offset-x = 0.7%
 offset-y = 1%
-radius = 5.0
+;radius-bottom = 12.0
 fixed-center = true
 override-redirect = false
 
 background = ${colors.background}
 ;background = "#00000000"
 foreground = ${colors.foreground}
-line-size = 1.5
 
-border-left-size = 10
-border-right-size = 10
-;border-bottom-size = 0
-border-top-size = 10
-
+border-left-size = 0
+border-right-size = 0
+;border-bottom-size = 10
+;border-top-size = 10
 ;border-left-size = 1
 ;border-top-size = 1
 ;border-right-size = 1
 ;border-bottom-size = 1
-;border-color = ${colors.blue}
+;border-color = ${colors.gray}
 
 padding-left = 2
 padding-right = 2
@@ -125,18 +128,19 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = Hack Nerd Font :size=10.5;2
-;font-1 = Hack Nerd Font : size=10.5;2
+font-0 = scientifica:pixelsize=15;3: antialias=true
+font-1 = siji:size=18;3: antialias=true
 
-modules-left = powermenu separator date 
-modules-center = i3
+modules-left = shutmenu separator date 
+;modules-center = bspwm 
+modules-center = i3 bspwm
 modules-right = spotify spotify-prev spotify-play-pause spotify-next 
 
 ;tray-position = right
 ;tray-padding = 0
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
+wm-restack = bspwm
 ;wm-restack = i3
 
 ;override-redirect = true
@@ -158,7 +162,7 @@ interval = 20
 
 format-background = ${colors.background}
 ;format-foreground = "#F23535"
-format-foreground = ${colors.foreground}
+format-foreground = ${colors.red}
 format-padding = 1
 
 [module/info-hackspeed]
@@ -182,15 +186,15 @@ exec = ~/Documentos/scripts/i3-window.py LVDS1
 type = custom/script
 tail = true
 ;prefix symbol is shown before the text
-format-prefix = "  "
-format-prefix-foreground = ${colors.green}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
 ;format-prefix-foreground = ${colors.foreground}
 format = <label>
 exec = ~/Documentos/scripts/polybar-spotify/scroll_spotify_status.sh
 
 [module/spotify-prev]
 type = custom/script
-exec = echo " "
+exec = echo " "
 format-foreground = ${colors.red}
 ;format-foreground = ${colors.foreground}
 format = <label>
@@ -198,16 +202,16 @@ click-left = playerctl previous spotify
 
 [module/spotify-play-pause]
 type = custom/ipc
-format-foreground = ${colors.teal}
+format-foreground = ${colors.red}
 ;format-foreground = ${colors.foreground}
-hook-0 = echo " "
-hook-1 = echo " "
+hook-0 = echo " "
+hook-1 = echo " "
 initial = 1
 click-left = playerctl play-pause spotify
 
 [module/spotify-next]
 type = custom/script
-exec = echo " "
+exec = echo " "
 format-foreground = ${colors.red}
 ;format-foreground = ${colors.foreground}
 format = <label>
@@ -220,9 +224,9 @@ type = internal/backlight
 ; $ ls -1 /sys/class/backlight/
 card = intel_backlight
 
-format-prefix = " "
+format-prefix = " "
 ;format-prefix-foreground = ${colors.foreground}
-format-prefix-foreground = ${colors.red}
+format-prefix-foreground = ${colors.yellow}
 format-underline = ${colors.red}
 
 [module/xwindow]
@@ -252,7 +256,7 @@ interval = 25
 
 mount-0 = /
 
-label-mounted =  : %percentage_used%%
+label-mounted =  : %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-mounted-foreground = ${colors.foreground}
 
@@ -261,10 +265,47 @@ type = custom/text
 content = Manjaro Linux   
 content-foreground = ${colors.foreground}
 
+[module/shutmenu]
+type = custom/text
+content = ""
+content-foreground = ${colors.green}
+click-left = sh ~/.config/rofi/powermenu/powermenu.sh
+
 [module/separator]
 type = custom/text
 content = |
 content-foreground = ${colors.red}
+
+[module/bspwm]
+
+type = internal/bspwm
+pin-workspaces = true
+enable-click = true
+enable-scroll = true
+reverse-scroll = false
+
+
+label-focused = %name%
+label-focused-foreground = ${colors.red}
+label-focused-background = ${colors.background}
+label-focused-padding = 2
+
+
+label-occupied = %name%
+label-occupied-foreground = ${colors.yellow}
+label-occupied-background = ${colors.background}
+label-occupied-padding = 2
+
+
+label-empty = %name%
+label-empty-foreground = ${colors.foreground}
+label-empty-background = ${colors.background}
+label-empty-padding = 2
+
+label-urgent = %name%
+label-urgent-foreground = ${colors.background}
+label-urgent-background = ${colors.red}
+label-urgent-padding = 2
 
 
 [module/i3]
@@ -277,20 +318,20 @@ wrapping-scroll = false
 pin-workspaces = true
 
 label-mode-padding = 5
-label-mode-foreground = ${colors.yellow}
+label-mode-foreground = ${colors.foreground}
 ;label-mode-foreground = ${colors.background}
-label-mode-background = ${colors.background}
+label-mode-background = ${colors.gray}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-;label-focused-background = ${colors.background}
+label-focused-background = ${colors.gray}
 ;label-focused-foreground = ${colors.green}
-label-focused-foreground = ${colors.green}
+label-focused-foreground = ${colors.foreground}
 label-focused-padding = 2
 
 unfocused = Inactive workspace on any monitor
 label-unfocused = %name%
-label-unfocused-foreground = ${colors.foreground}
+label-unfocused-foreground = ${colors.gray}
 ;label-unfocused-foreground = ${colors.background}
 label-unfocused-padding = 2
 
@@ -308,12 +349,20 @@ label-urgent-padding = 2
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+host = 127.0.0.1
+port = 6600
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+format-offline = <label-offline>
+label-offline =  offline
+format-offline-padding = 3
+format-offline-foreground = ${colors.red}
+format-offline-background = ${colors.background}
+
+icon-prev = "玲" 
+icon-stop = "栗"
+icon-play = "契"
+icon-pause = "栗"
+icon-next = "怜"
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -343,8 +392,8 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "  "
-format-prefix-foreground = ${colors.yellow}
+format-prefix = " "
+format-prefix-foreground = ${colors.magenta}
 ;format-prefix-foreground = ${colors.foreground}
 format-foreground = ${colors.foreground}
 label = %percentage: %%
@@ -353,8 +402,8 @@ format-underline = ${colors.blue}
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.red}
+format-prefix = " "
+format-prefix-foreground = ${colors.green}
 ;format-prefix-foreground = ${colors.foreground}
 format-foreground = ${colors.foreground}
 format-underline = ${colors.blue}
@@ -377,11 +426,11 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = "睊"
-ramp-signal-1 = " " 
-ramp-signal-2 = " " 
-ramp-signal-3 = " "
-ramp-signal-4 = " "
+ramp-signal-0 = " "
+ramp-signal-1 = "" 
+ramp-signal-2 = "" 
+ramp-signal-3 = " "
+ramp-signal-4 = ""
 ramp-signal-foreground = ${colors.teal}
 
 [module/eth]
@@ -405,6 +454,7 @@ type = custom/script
 exec = ~/Documentos/scripts/calendar.sh
 interval = 5
 click-left = exec notify-send -i ~/Documentos/calendar.png "$(cal)" &
+click-right = exec ~/.config/rofi/applets/applets/time.sh
 format-background = ${colors.background}
 format-foreground = ${colors.foreground}
 format-prefix-foreground = ${colors.blue}
@@ -415,12 +465,13 @@ type = internal/pulseaudio
 
 format-volume = <label-volume>
 label-volume = %percentage%%
-format-volume-prefix = "  "
-format-volume-prefix-foreground = ${colors.red}
+format-volume-prefix = "  "
+format-volume-prefix-foreground = ${colors.blue}
 label-volume-foreground = ${root.foreground}
+click-right = sh ~/.config/rofi/applets/applets/volume.sh
 
-label-muted = 🔇 muted
-label-muted-foreground = #666
+label-muted =   0%
+label-muted-foreground = ${colors.red}
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.green}
@@ -450,42 +501,37 @@ format-charging-underline = ${colors.foreground}
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
+format-full-prefix = ""
 format-full-prefix-foreground = ${colors.yellow}
 format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = " "
-ramp-capacity-1 = " "
-ramp-capacity-2 = " "
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
 ;ramp-capacity-foreground = ${colors.green}
 ramp-capacity-foreground = ${colors.red}
 
-animation-charging-0 = ""
-animation-charging-1 = "" 
-animation-charging-2 = "" 
-animation-charging-3 = "" 
-animation-charging-4 = "" 
-animation-charging-5 = "" 
-animation-charging-6 = "" 
-animation-charging-7 = "" 
-animation-charging-8 = "" 
-animation-charging-9 = "" 
-animation-charging-10 = ""
+animation-charging-0 = ""
+animation-charging-1 = "" 
+animation-charging-2 = "" 
+animation-charging-3 = "" 
+animation-charging-4 = "" 
+animation-charging-5 = "" 
+animation-charging-6 = "" 
+animation-charging-7 = "" 
 animation-charging-foreground = ${colors.blue}
 ;animation-charging-foreground = ${colors.red}
 animation-charging-framerate = 750
 
-animation-discharging-0 = ""
-animation-discharging-1 = "" 
-animation-discharging-2 = "" 
-animation-discharging-3 = "" 
-animation-discharging-4 = "" 
-animation-discharging-5 = "" 
-animation-discharging-6 = "" 
-animation-discharging-7 = "" 
-animation-discharging-8 = "" 
-animation-discharging-9 = "" 
-animation-discharging-10 = ""
+animation-discharging-0 = ""
+animation-discharging-1 = "" 
+animation-discharging-2 = "" 
+animation-discharging-3 = "" 
+animation-discharging-4 = "" 
+animation-discharging-5 = "" 
+animation-discharging-6 = "" 
+animation-discharging-7 = "" 
+animation-discharging-8 = "" 
 
 animation-discharging-foreground = ${colors.red}
 ;animation-discharging-foreground = ${colors.teal}
